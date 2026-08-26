@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego — Especificaciones Técnicas y Portafolio Web</title>
+    <meta name="description" content="Hoja de especificaciones técnicas y portafolio de Diego, desarrollador web especializado en crear páginas rápidas, automatizaciones y sistemas digitales a medida para negocios.">
+    
+    <!-- Fuentes del Sistema de Diseño -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Locales -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- GSAP para Animaciones Fluidas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    
+    <!-- EmailJS SDK para Envío de Correos -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    
+    <!-- Configuración de Variables de Entorno -->
+    <script src="config.js" defer></script>
+    
+    <!-- Lógica de la Página -->
+    <script src="main.js" defer></script>
+    
+    <!-- Evitar parpadeo de color en tema oscuro -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    
+    <div class="sheet-container">
+        <!-- 00. SECCIÓN DE CABECERA (DATOS DE LA ESPECIFICACIÓN) -->
+        <header class="spec-header section-fade">
+            <div class="header-main-grid">
+                <div class="logo-box">
+                    <div class="logo-text">D//G</div>
+                    <div class="logo-sub">SPEC_2026</div>
+                </div>
+                <div class="title-box">
+                    <span class="spec-label">CLASIFICACIÓN: ESPECIFICACIÓN DE SERVICIOS Y PORTAFOLIO</span>
+                    <h1 class="main-title">HOJA DE ESPECIFICACIONES TÉCNICAS</h1>
+                </div>
+                <div class="meta-box">
+                    <div class="meta-row"><span class="meta-label">REF:</span><span class="meta-val" id="spec-ref-id">DS-PORTFOLIO-2026</span></div>
+                    <div class="meta-row"><span class="meta-label">REVISIÓN:</span><span class="meta-val">1.0.4</span></div>
+                    <div class="meta-row"><span class="meta-label">GITHUB:</span><span class="meta-val"><a href="https://github.com/MyDiDev" target="_blank" class="header-link">[GITHUB]</a></span></div>
+                    <div class="meta-row"><span class="meta-label">LINKEDIN:</span><span class="meta-val"><a href="https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact_info%3BYl%2Bfs4KfTfO7Eo8YFjeKDw%3D%3D" target="_blank" class="header-link">[LINKEDIN]</a></span></div>
+                    <div class="meta-row"><span class="meta-label">TEMA:</span><span class="meta-val"><button id="theme-toggle-btn" class="theme-toggle-btn font-mono" aria-label="Cambiar tema">[MODO_CLARO]</button></span></div>
+                    <div class="meta-row"><span class="meta-label">ESTADO:</span><span class="meta-val status-active" id="spec-status">DISPONIBLE_PROYECTOS</span></div>
+                </div>
+            </div>
+            
+            <div class="header-divider-grid">
+                <div class="divider-cell">PARAM_01: DESARROLLO_WEB</div>
+                <div class="divider-cell">PARAM_02: AUTOMATIZACIONES</div>
+                <div class="divider-cell">PARAM_03: INTERFACES_RÁPIDAS</div>
+            </div>
+        </header>
+
+        <!-- 01. PERFIL / DESCRIPCIÓN -->
+        <section class="spec-section section-fade" id="section-description">
+            <div class="section-num">01.00</div>
+            <div class="section-content">
+                <h2 class="section-title">RESUMEN DEL SISTEMA Y PROPÓSITO</h2>
+                <div class="grid-two-cols">
+                    <div>
+                        <p class="lead-text">
+                            Diego es un desarrollador web especializado en construir páginas de alta velocidad, automatizar tareas repetitivas y estructurar datos para optimizar negocios.
+                        </p>
+                        <p class="body-text">
+                            En lugar de seguir modas de diseño lentas, cada sistema se diseña a medida para que cargue al instante, funcione sin caídas y sea fácil de navegar por tus clientes. Todas las soluciones se respaldan con código limpio, resultados medibles y un enfoque práctico orientado a la rentabilidad de tu negocio.
+                        </p>
+                    </div>
+                    <div class="overview-specs border-box">
+                        <h3 class="spec-table-title">ESTÁNDARES DE DESARROLLO</h3>
+                        <table class="parameters-table miniature">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Estructuras Base</td>
+                                    <td class="param-val font-mono">React / Node.js / HTML5</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Lenguajes de Código</td>
+                                    <td class="param-val font-mono">TypeScript / Python / CSS3</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Dispositivos Destino</td>
+                                    <td class="param-val font-mono">Móvil, Tablet y Computadoras</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Tipo de Construcción</td>
+                                    <td class="param-val font-mono">Limpia / Modular / Ligera</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. PARÁMETROS / CAPACIDADES -->
+        <section class="spec-section section-fade" id="section-parameters">
+            <div class="section-num">02.00</div>
+            <div class="section-content">
+                <h2 class="section-title">TECNOLOGÍAS Y SERVICIOS WEB</h2>
+                <p class="body-text margin-bottom">
+                    Resumen claro de las tecnologías, servicios y soluciones principales que desarrollo para proyectos digitales.
+                </p>
+                
+                <div class="grid-three-cols">
+                    <!-- Columna 1: Web & UI -->
+                    <div class="capability-card border-box">
+                        <div class="card-header">DESARROLLO_WEB_Y_UI</div>
+                        <table class="parameters-table">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Desarrollo Web</td>
+                                    <td class="param-val font-mono">[FRONTEND]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Diseño de Interfaces (UI)</td>
+                                    <td class="param-val font-mono">[INTERACTIVO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Animaciones Web</td>
+                                    <td class="param-val font-mono">[GSAP]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Diseño Adaptable (Móvil)</td>
+                                    <td class="param-val font-mono">[RESPONSIVE]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Columna 2: Servidores y APIs -->
+                    <div class="capability-card border-box">
+                        <div class="card-header">SERVIDORES_Y_APIS</div>
+                        <table class="parameters-table">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Servidores Web</td>
+                                    <td class="param-val font-mono">[NODE_PYTHON]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Conexión de APIs</td>
+                                    <td class="param-val font-mono">[REST_APIS]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Servicios y Datos</td>
+                                    <td class="param-val font-mono">[BBDD_SQL]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Automatizaciones</td>
+                                    <td class="param-val font-mono">[SCRIPTS]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Columna 3: Despliegue y Herramientas -->
+                    <div class="capability-card border-box">
+                        <div class="card-header">DESPLIEGUE_Y_HERRAMIENTAS</div>
+                        <table class="parameters-table">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Despliegue en la Nube</td>
+                                    <td class="param-val font-mono">[DEPLOYMENT]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Control de Versiones</td>
+                                    <td class="param-val font-mono">[GIT]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Velocidad de Carga</td>
+                                    <td class="param-val font-mono">[OPTIMIZADA]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Seguridad y Mantenimiento</td>
+                                    <td class="param-val font-mono">[SOPORTE]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. COMPONENTES / PROYECTOS -->
+        <section class="spec-section section-fade" id="section-catalog">
+            <div class="section-num">03.00</div>
+            <div class="section-content">
+                <h2 class="section-title">CATÁLOGO DE PROYECTOS (SOLUCIONES ENTREGADAS)</h2>
+                <p class="body-text margin-bottom">
+                    Detalle de los módulos y sistemas desarrollados. Selecciona cualquier entrada para ver sus características y el valor que aportan a un negocio.
+                </p>
+                
+                <div class="registry-list">
+                    <!-- Proyecto 1: nexus-ai-agent -->
+                    <div class="registry-item border-box" id="project-nexus-ai-agent">
+                        <div class="registry-header-row" id="proj-header-01" tabindex="0">
+                            <span class="proj-serial font-mono">P-001</span>
+                            <h3 class="proj-name">Nexus AI Agent — Asistente de Automatización</h3>
+                            <span class="proj-tech font-mono">Python / Agentes IA / OS Automation</span>
+                            <span class="proj-trigger-btn font-mono" id="btn-toggle-01">[VER_DETALLES]</span>
+                        </div>
+                        <div class="registry-body-drawer" id="proj-drawer-01" aria-hidden="true">
+                            <div class="drawer-content grid-two-cols">
+                                <div class="spec-detail-block">
+                                    <h4 class="detail-label">DESCRIPCIÓN DE NEGOCIO</h4>
+                                    <p class="detail-text">
+                                        Un agente inteligente en Python diseñado para ayudar a automatizar flujos de trabajo locales, analizar datos y ejecutar tareas de investigación e interacción en computadoras de forma segura.
+                                    </p>
+                                    <h4 class="detail-label">ENTREGABLES CLAVE</h4>
+                                    <ul class="detail-list">
+                                        <li>Algoritmos de toma de decisiones autónomos</li>
+                                        <li>Módulos de análisis y manipulación de datos locales</li>
+                                        <li>Arquitectura abierta y extensible de habilidades para desarrolladores</li>
+                                    </ul>
+                                    <div class="project-actions font-mono">
+                                        <a href="https://github.com/MyDiDev/nexus-ai-agent" target="_blank" class="project-link">[CÓDIGO_FUENTE]</a>
+                                    </div>
+                                </div>
+                                <div class="spec-metric-block">
+                                    <h4 class="detail-label">AUDITORÍA DE RENDIMIENTO</h4>
+                                    <table class="parameters-table mini-specs">
+                                        <tbody>
+                                            <tr>
+                                                <td class="param-name">Éxito en ejecución de tareas</td>
+                                                <td class="param-val font-mono">98.2%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Tiempo de respuesta promedio</td>
+                                                <td class="param-val font-mono">&lt;1.2s</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Herramientas cargadas</td>
+                                                <td class="param-val font-mono">15+ módulos</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Licencia de software</td>
+                                                <td class="param-val font-mono">MIT Open Source</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 2: CV-Api y CV-Api-frontend -->
+                    <div class="registry-item border-box" id="project-cv-api">
+                        <div class="registry-header-row" id="proj-header-02" tabindex="0">
+                            <span class="proj-serial font-mono">P-002</span>
+                            <h3 class="proj-name">Plataforma Analizadora de Currículums (CV-Api)</h3>
+                            <span class="proj-tech font-mono">Python / TypeScript / React</span>
+                            <span class="proj-trigger-btn font-mono" id="btn-toggle-02">[VER_DETALLES]</span>
+                        </div>
+                        <div class="registry-body-drawer" id="proj-drawer-02" aria-hidden="true">
+                            <div class="drawer-content grid-two-cols">
+                                <div class="spec-detail-block">
+                                    <h4 class="detail-label">DESCRIPCIÓN DE NEGOCIO</h4>
+                                    <p class="detail-text">
+                                        Un sistema inteligente que procesa y analiza currículums (CVs) de candidatos. Evalúa automáticamente la solidez del perfil contra ofertas de empleo, facilitando filtros eficientes en departamentos de Recursos Humanos.
+                                    </p>
+                                    <h4 class="detail-label">ENTREGABLES CLAVE</h4>
+                                    <ul class="detail-list">
+                                        <li>API REST optimizada para procesamiento de CVs en lote</li>
+                                        <li>Portal frontend interactivo para candidatos y reclutadores</li>
+                                        <li>Validador dinámico de credenciales y claves API</li>
+                                    </ul>
+                                    <div class="project-actions font-mono">
+                                        <a href="https://github.com/MyDiDev/CV-Api" target="_blank" class="project-link">[API_BACKEND]</a>
+                                        <a href="https://github.com/MyDiDev/CV-Api-frontend" target="_blank" class="project-link">[PORTAL_FRONTEND]</a>
+                                    </div>
+                                </div>
+                                <div class="spec-metric-block">
+                                    <h4 class="detail-label">AUDITORÍA DE RENDIMIENTO</h4>
+                                    <table class="parameters-table mini-specs">
+                                        <tbody>
+                                            <tr>
+                                                <td class="param-name">Duración del análisis de CV</td>
+                                                <td class="param-val font-mono">1.5s</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Precisión en coincidencia</td>
+                                                <td class="param-val font-mono">94.8%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Carga con Lighthouse</td>
+                                                <td class="param-val font-mono">97/100</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Formatos soportados</td>
+                                                <td class="param-val font-mono">PDF, DOCX, JSON</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 3: ecommerce-dashboard -->
+                    <div class="registry-item border-box" id="project-ecommerce-dashboard">
+                        <div class="registry-header-row" id="proj-header-03" tabindex="0">
+                            <span class="proj-serial font-mono">P-003</span>
+                            <h3 class="proj-name">Ecommerce Dashboard Analítico</h3>
+                            <span class="proj-tech font-mono">TypeScript / React / Tailored UI</span>
+                            <span class="proj-trigger-btn font-mono" id="btn-toggle-03">[VER_DETALLES]</span>
+                        </div>
+                        <div class="registry-body-drawer" id="proj-drawer-03" aria-hidden="true">
+                            <div class="drawer-content grid-two-cols">
+                                <div class="spec-detail-block">
+                                    <h4 class="detail-label">DESCRIPCIÓN DE NEGOCIO</h4>
+                                    <p class="detail-text">
+                                        Tablero analítico interactivo diseñado para la gestión y monitoreo en tiempo real de transacciones, comportamiento de compras y métricas operativas de comercio electrónico.
+                                    </p>
+                                    <h4 class="detail-label">ENTREGABLES CLAVE</h4>
+                                    <ul class="detail-list">
+                                        <li>Tablero de control de ventas con actualización inmediata</li>
+                                        <li>Diseño modular optimizado con altos estándares de consistencia visual</li>
+                                        <li>Gráficos analíticos e indicadores clave de rendimiento (KPIs)</li>
+                                    </ul>
+                                    <div class="project-actions font-mono">
+                                        <a href="https://github.com/MyDiDev/ecommerce-dashboard" target="_blank" class="project-link">[CÓDIGO_FUENTE]</a>
+                                    </div>
+                                </div>
+                                <div class="spec-metric-block">
+                                    <h4 class="detail-label">AUDITORÍA DE RENDIMIENTO</h4>
+                                    <table class="parameters-table mini-specs">
+                                        <tbody>
+                                            <tr>
+                                                <td class="param-name">Velocidad Lighthouse</td>
+                                                <td class="param-val font-mono">99/100</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Latencia de renderizado</td>
+                                                <td class="param-val font-mono">&lt;150ms</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Responsividad móvil</td>
+                                                <td class="param-val font-mono">100%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="param-name">Peso del bundle optimizado</td>
+                                                <td class="param-val font-mono">&lt;42kb</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. COMPATIBILIDAD E INTEGRACIÓN -->
+        <section class="spec-section section-fade" id="section-compatibility">
+            <div class="section-num">04.00</div>
+            <div class="section-content">
+                <h2 class="section-title">MATRIZ DE COMPATIBILIDAD E INTEGRACIÓN</h2>
+                <p class="body-text margin-bottom">
+                    Detalle técnico que garantiza la correcta integración del software con los servidores y herramientas de tu negocio.
+                </p>
+                <div class="grid-two-cols">
+                    <div class="border-box">
+                        <div class="card-header">SOPORTE_DE_SERVIDORES</div>
+                        <table class="parameters-table">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Node.js (18.x - 22.x)</td>
+                                    <td class="param-val font-mono status-ok">[SOPORTADO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Python (3.10+)</td>
+                                    <td class="param-val font-mono status-ok">[SOPORTADO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Servidores en la Nube (Vercel/CF)</td>
+                                    <td class="param-val font-mono status-ok">[INTEGRADO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Contenedores Docker</td>
+                                    <td class="param-val font-mono status-ok">[COMPATIBLE]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="border-box">
+                        <div class="card-header">SEGURIDAD_Y_CONEXIONES</div>
+                        <table class="parameters-table">
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Bases de Datos PostgreSQL y SQLite</td>
+                                    <td class="param-val font-mono status-ok">[SEGURO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Servicios API (REST)</td>
+                                    <td class="param-val font-mono status-ok">[INTEGRADO]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Consultas de Datos (GraphQL)</td>
+                                    <td class="param-val font-mono status-ok">[COMPATIBLE]</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Flujos de Actualización Automática</td>
+                                    <td class="param-val font-mono status-ok">[AUTOMATIZADO]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. PROCESO DE TRABAJO -->
+        <section class="spec-section section-fade" id="section-pipelines">
+            <div class="section-num">05.00</div>
+            <div class="section-content">
+                <h2 class="section-title">ETAPAS DE DESARROLLO Y GARANTÍA</h2>
+                <p class="body-text margin-bottom">
+                    Proceso ordenado que sigo para garantizar entregas puntuales y sin errores de funcionamiento.
+                </p>
+                <div class="grid-three-cols">
+                    <div class="pipeline-stage border-box">
+                        <div class="stage-num font-mono">ETAPA_01</div>
+                        <h3 class="stage-title font-mono">PLANIFICACIÓN Y DISEÑO</h3>
+                        <p class="stage-desc">
+                            Definición de las funciones necesarias, estructura de bases de datos y creación del mapa visual inicial de tu web.
+                        </p>
+                        <div class="stage-status font-mono">[01_LISTO]</div>
+                    </div>
+                    <div class="pipeline-stage border-box">
+                        <div class="stage-num font-mono">ETAPA_02</div>
+                        <h3 class="stage-title font-mono">DESARROLLO Y PRUEBAS</h3>
+                        <p class="stage-desc">
+                            Construcción limpia de la aplicación, asegurando que cada botón funcione perfectamente en celulares y computadoras.
+                        </p>
+                        <div class="stage-status font-mono">[02_ESTABLE]</div>
+                    </div>
+                    <div class="pipeline-stage border-box">
+                        <div class="stage-num font-mono">ETAPA_03</div>
+                        <h3 class="stage-title font-mono">OPTIMIZACIÓN Y DESPLIEGUE</h3>
+                        <p class="stage-desc">
+                            Publicación en internet, optimización de velocidad de carga y verificación final de seguridad.
+                        </p>
+                        <div class="stage-status font-mono">[03_ACTIVO]</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. FORMULARIO DE CONTACTO -->
+        <section class="spec-section section-fade" id="section-collaboration">
+            <div class="section-num">06.00</div>
+            <div class="section-content">
+                <h2 class="section-title">INICIAR UN PROYECTO O CONSULTA</h2>
+                <p class="body-text margin-bottom">
+                    ¿Tienes una idea o necesitas automatizar procesos en tu negocio? Rellena los datos a continuación para iniciar el contacto.
+                </p>
+                
+                <div class="form-container border-box">
+                    <div class="form-header">
+                        <span>SOLICITUD DE PROYECTO Form-DS-06</span>
+                        <span id="voucher-timestamp" class="font-mono">2026.07.24 // UTC</span>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="input-client-name" class="field-label font-mono">01. TU NOMBRE O EMPRESA*</label>
+                                <input type="text" id="input-client-name" name="name" required placeholder="Ej. Juan Pérez / Empresa S.A.">
+                            </div>
+                            <div class="form-field">
+                                <label for="input-client-email" class="field-label font-mono">02. TU CORREO ELECTRÓNICO*</label>
+                                <input type="email" id="input-client-email" name="email" required placeholder="Ej. correo@empresa.com">
+                            </div>
+                            <div class="form-field span-full">
+                                <label for="input-client-subject" class="field-label font-mono">03. ¿EN QUÉ TE PUEDO AYUDAR?*</label>
+                                <select id="input-client-subject" name="subject" required>
+                                    <option value="" disabled selected>Selecciona una opción...</option>
+                                    <option value="Creación de Página Web / Sistema a Medida">Creación de Página Web / Sistema a Medida</option>
+                                    <option value="Apoyo Técnico / Consultoría Externa">Apoyo Técnico / Consultoría Externa</option>
+                                    <option value="Entrevista Técnica / Puesto Laboral">Entrevista Técnica / Puesto Laboral</option>
+                                    <option value="Otra Consulta General">Otra Consulta General</option>
+                                </select>
+                            </div>
+                            <div class="form-field span-full">
+                                <label for="input-client-message" class="field-label font-mono">04. DETALLES DE TU PROYECTO (Ideas, plazos, presupuesto)*</label>
+                                <textarea id="input-client-message" name="message" required placeholder="Explica de forma sencilla qué necesitas construir, tus objetivos y tiempos deseados..."></textarea>
+                            </div>
+                        </div>
+                        <!-- Hidden inputs to transmit submission date, time, day and year to EmailJS -->
+                        <input type="hidden" name="submission_date" id="input-submission-date">
+                        <input type="hidden" name="submission_time" id="input-submission-time">
+                        <input type="hidden" name="submission_day" id="input-submission-day">
+                        <input type="hidden" name="year" id="input-submission-year">
+                        
+                        <div class="form-footer">
+                            <button type="submit" id="btn-submit-inquiry" class="form-submit-btn font-mono">
+                                [ENVIAR_SOLICITUD_DE_PROYECTO]
+                            </button>
+                            <div id="form-status-indicator" class="form-status font-mono" aria-live="polite">
+                                ESTADO: ESPERANDO_DATOS
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PIE DE PÁGINA -->
+        <footer class="spec-footer section-fade">
+            <div class="footer-grid">
+                <div>Diego © 2026 // ESPECIFICACIONES CONFIRMADAS.</div>
+                <div class="text-right font-mono" id="telemetry-log">TELEMETRÍA: OK_200 // SISTEMA_ESTABLE</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN DE ENVÍO -->
+    <div id="modal-success" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-success-title">
+        <div class="modal-container border-box">
+            <div class="modal-header">
+                <div class="modal-header-title font-mono">CONFIRMACIÓN_DE_ENTREGA // SYS_200</div>
+                <button type="button" class="modal-close-btn font-mono" id="btn-close-modal" aria-label="Cerrar ventana">[X]</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-status-badge font-mono">[TRANSMISIÓN_COMPLETADA]</div>
+                <h3 class="modal-title" id="modal-success-title">SOLICITUD ENVIADA CORRECTAMENTE</h3>
+                <p class="modal-desc">
+                    Tu mensaje ha sido procesado e ingresado al sistema de correo. Me pondré en contacto contigo a la brevedad.
+                </p>
+                <div class="modal-receipt-box border-box font-mono">
+                    <div class="receipt-row">
+                        <span class="receipt-label">ID TRANSMISIÓN:</span>
+                        <span class="receipt-val" id="modal-receipt-id">TX-98F2A10B</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">FECHA Y HORA:</span>
+                        <span class="receipt-val" id="modal-receipt-time">2026.08.25 // 20:17 UTC</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">ESTADO DE ENVÍO:</span>
+                        <span class="receipt-val status-ok">CONFIRMADO_Y_ENTREGADO</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-confirm-btn font-mono" id="btn-confirm-modal">
+                        [ACEPTAR_Y_CERRAR]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

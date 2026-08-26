@@ -1,0 +1,950 @@
+/* ==========================================================================
+   DESIGN SYSTEM: TECHNICAL PORTFOLIO SPEC SHEET
+   METAPHOR: Industrial Parts Catalog & CAD blueprint rules
+   COORDINATES: (0px border-radius, 1px solid borders, zero shadows, safety orange)
+   ========================================================================== */
+
+/* 1. TOKENS & VARIABLES */
+:root {
+    --color-primary: #FF5500;       /* Safety Orange */
+    --color-primary-hover: #CC4400; /* Deep Safety Orange */
+    --color-bg-paper: #FCFAF7;      /* Technical Off-White Paper */
+    --color-bg-backing: #F3F0EC;    /* Technical Gray/Parchment */
+    --color-ink: #1A1A1A;           /* Matte Charcoal */
+    --color-ink-muted: #555555;     /* Slate Gray */
+    --color-ink-light: #888888;     /* Light Metal Gray */
+    --color-border-muted: rgba(26, 26, 26, 0.15);
+    --color-border-subtle: rgba(26, 26, 26, 0.1);
+    --color-bg-input-focus: #fffdfb;
+    --select-arrow-url: url("data:image/svg+xml;utf8,<svg fill='%231A1A1A' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    
+    --font-sans: 'Albert Sans', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Space Mono', monospace;
+}
+
+html[data-theme="dark"] {
+    --color-bg-paper: #1A1A1A;      /* Matte Charcoal */
+    --color-bg-backing: #0F0F0F;    /* Matte Midnight */
+    --color-ink: #E5E2DD;           /* Technical Matte Off-White */
+    --color-ink-muted: #9E9A95;     /* Muted Warm Gray */
+    --color-ink-light: #6E6A65;     /* Slate Gray */
+    --color-border-muted: rgba(229, 226, 221, 0.15);
+    --color-border-subtle: rgba(229, 226, 221, 0.1);
+    --color-bg-input-focus: #242424;
+    --select-arrow-url: url("data:image/svg+xml;utf8,<svg fill='%23E5E2DD' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+/* 2. BASE RESETS & ROOT SETUP */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: var(--color-bg-backing);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--color-bg-backing);
+    background-image: 
+        linear-gradient(var(--color-border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px),
+        linear-gradient(var(--color-border-muted) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border-muted) 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+
+/* Technical grid watermark overlay */
+.watermark-grid {
+    display: none;
+}
+
+/* 3. STRUCTURAL CONTAINER */
+.sheet-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--color-bg-paper);
+    border: 1px solid var(--color-ink);
+    padding: 2.5rem;
+    position: relative;
+}
+
+/* Double lines to denote spec sheet boundary */
+.sheet-container::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid var(--color-ink);
+    pointer-events: none;
+}
+
+/* Utility Helpers */
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.margin-bottom {
+    margin-bottom: 1.5rem;
+}
+
+.span-full {
+    grid-column: 1 / -1;
+}
+
+.border-box {
+    border: 1px solid var(--color-ink);
+}
+
+/* 4. HEADER SECTION (CAD/SPEC STYLE) */
+.spec-header {
+    border-bottom: 2px solid var(--color-ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.header-main-grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid var(--color-ink);
+    margin-bottom: 1.5rem;
+}
+
+.logo-box {
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.logo-text {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.logo-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+}
+
+.title-box {
+    padding: 1rem;
+}
+
+.spec-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-ink-muted);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.main-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.meta-box {
+    border-left: 1px solid var(--color-ink);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 250px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.meta-label {
+    font-family: var(--font-mono);
+    color: var(--color-ink-light);
+}
+
+.meta-val {
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.status-active {
+    color: var(--color-primary);
+    font-weight: 600;
+    position: relative;
+    padding-left: 12px;
+}
+
+.status-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+}
+
+/* Header Divider Block */
+.header-divider-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--color-ink);
+    background-color: var(--color-bg-backing);
+}
+
+.divider-cell {
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.divider-cell:not(:last-child) {
+    border-right: 1px solid var(--color-ink);
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--color-primary-hover);
+}
+
+/* 5. SECTIONS GENERAL LAYOUT */
+.spec-section {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-border-muted);
+}
+
+.spec-section:last-of-type {
+    border-bottom: none;
+}
+
+.section-num {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    border-right: 1px solid var(--color-ink);
+    padding-top: 0.25rem;
+}
+
+.section-content {
+    padding-right: 1rem;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Grid Layouts */
+.grid-two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.grid-three-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Typography styles */
+.lead-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.body-text {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    max-width: 68ch;
+}
+
+/* 6. TABLES / DATA REPRESENTATION */
+.parameters-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.parameters-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.parameters-table tr:last-child td {
+    border-bottom: none;
+}
+
+.param-name {
+    color: var(--color-ink-muted);
+    font-weight: 500;
+}
+
+.param-val {
+    text-align: right;
+    font-weight: 600;
+}
+
+/* Specification box */
+.overview-specs {
+    background-color: var(--color-bg-backing);
+}
+
+.spec-table-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    padding: 0.5rem 1rem;
+}
+
+/* Capability Card Layout */
+.capability-card {
+    background-color: var(--color-bg-paper);
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.capability-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: var(--color-bg-backing);
+    border-bottom: 1px solid var(--color-ink);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* 7. REGISTRY / CATALOG DRAWERS */
+.registry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.registry-item {
+    background-color: var(--color-bg-paper);
+    overflow: hidden;
+    transition: border-color 0.25s;
+}
+
+.registry-item:hover {
+    border-color: var(--color-primary);
+}
+
+.registry-header-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    background-color: var(--color-bg-paper);
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+.registry-header-row:focus-visible {
+    background-color: var(--color-bg-backing);
+    outline: 1px solid var(--color-primary);
+}
+
+.registry-header-row:hover {
+    background-color: var(--color-bg-backing);
+}
+
+.proj-serial {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.proj-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.proj-tech {
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+}
+
+.proj-trigger-btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+    padding: 0.35rem 0.75rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.registry-item:hover .proj-trigger-btn {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* Active Open Drawer State */
+.registry-item.active {
+    border-color: var(--color-primary);
+}
+
+.registry-item.active .proj-trigger-btn {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-bg-paper);
+}
+
+/* Drawer contents */
+.registry-body-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, visibility 0.3s ease;
+    border-top: 0 solid var(--color-ink);
+    background-color: var(--color-bg-backing);
+}
+
+.registry-item.active .registry-body-drawer {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid var(--color-ink);
+}
+
+.drawer-content {
+    min-height: 0;
+    overflow: hidden;
+    padding: 1.5rem;
+    gap: 2rem;
+}
+
+.spec-detail-block, .spec-metric-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-ink-light);
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+}
+
+.detail-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+}
+
+.detail-list {
+    list-style-type: square;
+    margin-left: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+}
+
+.detail-list li {
+    margin-bottom: 0.25rem;
+}
+
+.mini-specs td {
+    padding: 0.5rem 0.75rem;
+}
+
+/* Link Styling */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 1px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Header Specific Link Override */
+.header-link {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.header-link:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Project Drawer Actions */
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    border-top: 1px dashed var(--color-border-muted);
+    padding-top: 1rem;
+}
+
+.project-link {
+    border: 1px solid var(--color-primary);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    background-color: transparent;
+    color: var(--color-primary);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.project-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg-paper);
+    text-decoration: none;
+}
+/* Pipeline Stage Cards */
+.pipeline-stage {
+    background-color: var(--color-bg-backing);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    border: 1px solid var(--color-ink);
+}
+
+.stage-num {
+    font-size: 0.8rem;
+    color: var(--color-ink-light);
+}
+
+.stage-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.stage-desc {
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+    line-height: 1.4;
+}
+
+.stage-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: auto;
+    border-top: 1px dashed var(--color-border-muted);
+    padding-top: 0.75rem;
+}
+
+.status-ok {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* 8. FORM & INTERACTIVE COMPONENT STYLING */
+.form-container {
+    background-color: var(--color-bg-backing);
+    overflow: hidden;
+}
+
+.form-header {
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+#contact-form {
+    padding: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+}
+
+#contact-form input,
+#contact-form select,
+#contact-form textarea {
+    background-color: var(--color-bg-paper);
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-sans);
+}
+
+#contact-form input:focus,
+#contact-form select:focus,
+#contact-form textarea:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg-input-focus);
+}
+
+#contact-form select {
+    appearance: none;
+    background-image: var(--select-arrow-url);
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 1.25rem;
+}
+
+.form-submit-btn {
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    border: 1px solid var(--color-ink);
+    padding: 0.85rem 1.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 0;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.form-submit-btn:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.form-submit-btn:active {
+    background-color: var(--color-primary-hover);
+}
+
+.form-status {
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+}
+
+/* 9. FOOTER & LOG DETAILS */
+.spec-footer {
+    border-top: 1px solid var(--color-ink);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.75rem;
+    color: var(--color-ink-light);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 10. GSAP ANIMATIONS CLASSROOM & RESPONSIVE DESIGN */
+.section-fade {
+    opacity: 0;
+    transform: translateY(20px);
+}/* Typewriter terminal cursor simulation */
+.typing-cursor::after {
+    content: '_';
+    animation: cursor-blink 0.9s step-start infinite;
+    color: var(--color-primary);
+    margin-left: 4px;
+    font-weight: 500;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .sheet-container {
+        padding: 1.5rem;
+    }
+    
+    .header-main-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .meta-box {
+        border-left: none;
+        border-top: 1px solid var(--color-ink);
+        padding: 1rem;
+    }
+    
+    .grid-two-cols,
+    .grid-three-cols {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .spec-section {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1.5rem 0;
+    }
+    
+    .section-num {
+        border-right: none;
+        border-bottom: 1px solid var(--color-ink);
+        padding-bottom: 0.25rem;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    
+    .registry-header-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .proj-trigger-btn {
+        justify-self: start;
+        margin-top: 0.5rem;
+    }
+}
+
+/* 11. MODAL COMPONENT (SPEC SHEET STYLE) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background-color: var(--color-bg-paper);
+    border: 2px solid var(--color-ink);
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    position: relative;
+    transform: scale(0.94);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-header {
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-ink);
+}
+
+.modal-header-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-bg-paper);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.modal-close-btn:hover {
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+    padding: 1.75rem;
+}
+
+.modal-status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    background-color: var(--color-bg-backing);
+    color: var(--color-primary);
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--color-ink);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.modal-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.modal-desc {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.modal-receipt-box {
+    background-color: var(--color-bg-backing);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--color-border-subtle);
+    padding-bottom: 0.35rem;
+}
+
+.receipt-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.receipt-label {
+    color: var(--color-ink-muted);
+}
+
+.receipt-val {
+    font-weight: 600;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-confirm-btn {
+    background-color: var(--color-ink);
+    color: var(--color-bg-paper);
+    border: 1px solid var(--color-ink);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.modal-confirm-btn:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}

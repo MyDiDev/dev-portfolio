@@ -1,0 +1,24 @@
+# Environment & Secret Config Files
+.env
+.env.local
+.env.*.local
+config.js
+
+# Agent folders & skills
+.impeccable/
+.agents/
+.claude/
+.codex/
+.gemini/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Internal variables and agent UI guidelines
+.config.js
+DESIGN.md
+PRODUCT.md
+sites.md
